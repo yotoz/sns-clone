@@ -5,7 +5,6 @@ import SnsHeader from '../SnsHeader';
 
 //styles
 import './styles.scss';
-import SnsListItem from '../SnsListItme';
 
 const Animation_Status = {
   CLOSE: 0,
