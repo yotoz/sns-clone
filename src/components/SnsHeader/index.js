@@ -1,4 +1,5 @@
 import React, {
+  useState,
   useRef,
   useEffect,
   useReducer,
@@ -42,12 +43,16 @@ const SnsHeader = ({
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
+
+  //const [url, setUrl] = useState(null);
   const handleChange = (event) => {
+    //setUrl(URL.createObjectURL(event.target.files[0]));
+
     if (event.target.files.length > 0) {
       onAddTodoListData(
         inputManager.title,
         inputManager.details,
-        { ...event.target.files },
+        [...event.target.files],
       );
 
       inputDispatch({ name: 'title', value: '' });
@@ -56,6 +61,10 @@ const SnsHeader = ({
       closeHeader();
     }
   };
+
+  // useEffect(() => {
+  //   console.log(url);
+  // }, [url]);
 
   const [inputManager, inputDispatch] = useReducer(
     reducer,
