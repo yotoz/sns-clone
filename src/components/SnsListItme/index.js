@@ -3,10 +3,6 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 import Modal from '../SnsModal';
 const SnsListItem = ({
-  isDone,
-  title = '제에모목',
-  detatils = '내용',
-  imgUri = ['/test1.png', '/test2.png', '/test3.png'],
   todoListData,
   changeIsDoneData,
 }) => {
@@ -28,7 +24,7 @@ const SnsListItem = ({
         .slice(0)
         .reverse()
         .map((item, idx) => (
-          <div className="sns-card">
+          <div className="sns-card" key={idx}>
             <div className="sns-card-header">
               <div className="sns-card-title">
                 {item.title}
@@ -80,11 +76,6 @@ const SnsListItem = ({
   );
 };
 
-SnsListItem.propTypes = {
-  isDone: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  detatils: PropTypes.string.isRequired,
-  imgUri: PropTypes.any,
-};
+SnsListItem.propTypes = {};
 
 export default SnsListItem;
