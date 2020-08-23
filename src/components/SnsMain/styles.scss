@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .sns-main {
+    background-color: grey;
+    width: 60vw;
+    height: 100vh;
+  }
+}
