@@ -16,13 +16,14 @@ const Animation_Status = {
 
 const SnsMain = () => {
   const [todoListData, setTodoListData] = useState([
-    {
-      isDone: false,
-      title: '',
-      details: '',
-      imgUri: '',
-    },
+    // {
+    //   isDone: false,
+    //   title: '',
+    //   details: '',
+    //   imgUri: {},
+    // },
   ]);
+  const [uniqNum, setUniqNum] = useState(0);
 
   const [isExtends, setIsExtends] = useState(
     Animation_Status.CLOSE,
@@ -32,15 +33,30 @@ const SnsMain = () => {
     setTodoListData(
       todoListData.concat({
         isDone: false,
-        title,
-        details,
-        imgUri,
+        title: title,
+        details: details,
+        imgUri: imgUri,
+        uniqNum: uniqNum,
       }),
     );
+
+    setUniqNum(uniqNum + 1);
   };
 
   const changeExtendsState = (state) => {
     setIsExtends(state);
+  };
+
+  const changeIsDoneData = (isDone, uniqNum) => {
+    const array = [...todoListData];
+
+    array.forEach((element) => {
+      if (element.uniqNum === uniqNum) {
+        element.isDone = isDone;
+      }
+    });
+
+    setTodoListData(array);
   };
 
   return (
@@ -66,7 +82,10 @@ const SnsMain = () => {
         }}
       >
         <div className="sns-main">
-          <SnsListItem />
+          <SnsListItem
+            todoListData={todoListData}
+            changeIsDoneData={changeIsDoneData}
+          />
         </div>
       </div>
     </div>

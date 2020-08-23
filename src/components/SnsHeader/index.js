@@ -37,6 +37,26 @@ const SnsHeader = ({
 
   const headerRef = useRef(null);
   const submitRef = useRef(null);
+  const hiddenFileInput = React.useRef(null);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    if (event.target.files.length > 0) {
+      onAddTodoListData(
+        inputManager.title,
+        inputManager.details,
+        { ...event.target.files },
+      );
+
+      inputDispatch({ name: 'title', value: '' });
+      inputDispatch({ name: 'details', value: '' });
+
+      closeHeader();
+    }
+  };
+
   const [inputManager, inputDispatch] = useReducer(
     reducer,
     {
@@ -153,16 +173,20 @@ const SnsHeader = ({
           className="header-submit-button"
           onClick={() => {
             ///processing
-
-            inputDispatch({ name: 'title', value: '' });
-            inputDispatch({ name: 'details', value: '' });
-
-            closeHeader();
+            handleClick();
           }}
           ref={submitRef}
         >
           Submit
         </button>
+        <input
+          type="file"
+          ref={hiddenFileInput}
+          onChange={handleChange}
+          style={{ display: 'none' }}
+          accept="image/*"
+          multiple
+        />
       </div>
       <div className="right-space"></div>
     </div>
