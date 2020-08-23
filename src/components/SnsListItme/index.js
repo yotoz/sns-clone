@@ -7,6 +7,8 @@ const SnsListItem = ({
   title = '제에모목',
   detatils = '내용',
   imgUri = ['/test1.png', '/test2.png', '/test3.png'],
+  todoListData,
+  changeIsDoneData,
 }) => {
   const imgRef = useRef();
 
@@ -22,26 +24,36 @@ const SnsListItem = ({
 
   return (
     <div className="sns-list-item">
-      <div className="sns-card">
-        <div className="sns-card-header">{title}</div>
-        <div className="sns-card-body">
-          <div className="sns-card-img-list">
-            {imgUri.map((imgSrc, idx) => (
-              <img
-                width={100 / imgUri.length + '%'}
-                className="sns-card-img"
-                alt="post"
-                key={idx}
-                src={imgSrc}
-                onClick={(e) => {
-                  onClick(e);
-                }}
-              />
-            ))}
+      {todoListData.map((item, idx) => (
+        <div className="sns-card">
+          <div className="sns-card-header">
+            <div className="sns-card-title">
+              {item.title}
+            </div>
+            <input type="checkbox" />
+            {console.log(item.imgUri)}
           </div>
-          <div className="sns-card-text">{detatils}</div>
+          <div className="sns-card-body">
+            <div className="sns-card-img-list">
+              {item.imgUri.map((imgSrc, idx) => (
+                <img
+                  width={100 / item.imgUri.length + '%'}
+                  className="sns-card-img"
+                  alt="post"
+                  key={idx}
+                  src={URL.createObjectURL(imgSrc)}
+                  onClick={(e) => {
+                    onClick(e);
+                  }}
+                />
+              ))}
+            </div>
+            <div className="sns-card-text">
+              {item.details}
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
 
       <Modal visible={modalState} onClose={onClose}>
         <img
