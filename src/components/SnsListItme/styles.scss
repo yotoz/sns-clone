@@ -1,0 +1,51 @@
+.sns-list-item {
+  width: 60vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  align-items: center;
+
+  .sns-card {
+    &:first-child {
+      margin-top: 8px;
+    }
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+
+    //margin-top: 12px;
+    width: 50vw;
+    border: 1px solid black;
+    .sns-card-header {
+      height: 30px;
+      border: 1px solid red;
+      display: flex;
+      align-items: center;
+      margin: 5px;
+    }
+
+    .sns-card-body {
+      border: 1px solid blue;
+      //min-height: 10%;
+      min-height: 40px;
+      height: fit-content;
+      margin: 5px;
+
+      .sns-card-img-list {
+        display: flex;
+        height: 100px;
+        width: 100%;
+        .sns-card-img {
+          flex: 1;
+          height: 100%;
+          object-fit: fill;
+        }
+      }
+
+      .sns-card-text {
+      }
+    }
+  }
+}
