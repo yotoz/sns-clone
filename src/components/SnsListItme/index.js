@@ -24,36 +24,39 @@ const SnsListItem = ({
 
   return (
     <div className="sns-list-item">
-      {todoListData.map((item, idx) => (
-        <div className="sns-card">
-          <div className="sns-card-header">
-            <div className="sns-card-title">
-              {item.title}
+      {todoListData
+        .slice(0)
+        .reverse()
+        .map((item, idx) => (
+          <div className="sns-card">
+            <div className="sns-card-header">
+              <div className="sns-card-title">
+                {item.title}
+              </div>
+              <input type="checkbox" />
+              {console.log(todoListData)}
             </div>
-            <input type="checkbox" />
-            {console.log(item.imgUri)}
+            <div className="sns-card-body">
+              <div className="sns-card-img-list">
+                {item.imgUri.map((imgSrc, idx) => (
+                  <img
+                    width={100 / item.imgUri.length + '%'}
+                    className="sns-card-img"
+                    alt="post"
+                    key={idx}
+                    src={URL.createObjectURL(imgSrc)}
+                    onClick={(e) => {
+                      onClick(e);
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="sns-card-text">
+                {item.details}
+              </div>
+            </div>
           </div>
-          <div className="sns-card-body">
-            <div className="sns-card-img-list">
-              {item.imgUri.map((imgSrc, idx) => (
-                <img
-                  width={100 / item.imgUri.length + '%'}
-                  className="sns-card-img"
-                  alt="post"
-                  key={idx}
-                  src={URL.createObjectURL(imgSrc)}
-                  onClick={(e) => {
-                    onClick(e);
-                  }}
-                />
-              ))}
-            </div>
-            <div className="sns-card-text">
-              {item.details}
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
 
       <Modal visible={modalState} onClose={onClose}>
         <img
