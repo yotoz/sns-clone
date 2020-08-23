@@ -1,14 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './styles.scss';
 import PropTypes from 'prop-types';
 import Modal from '../SnsModal';
+
 const SnsListItem = ({
   todoListData,
   changeIsDoneData,
 }) => {
   const imgRef = useRef();
+  const cardRef = useRef(null);
 
   const [modalState, setModalState] = useState(false);
+
   const onClick = (e) => {
     setModalState(true);
     imgRef.current.src = e.target.src;
@@ -18,13 +21,23 @@ const SnsListItem = ({
     setModalState(false);
   };
 
+  const refs = useRef([
+    React.createRef(),
+    React.createRef(),
+  ]);
+
   return (
     <div className="sns-list-item">
       {todoListData
         .slice(0)
         .reverse()
         .map((item, idx) => (
-          <div className="sns-card" key={idx}>
+          <div
+            className="sns-card"
+            key={idx}
+            style={{}}
+            ref={refs.current[idx]}
+          >
             <div className="sns-card-header">
               <div className="sns-card-title">
                 {item.title}
@@ -32,11 +45,24 @@ const SnsListItem = ({
               <input
                 type="checkbox"
                 name={item.uniqNum}
+                id={idx}
                 onClick={(e) => {
                   changeIsDoneData(
                     e.target.checked,
                     e.target.name,
                   );
+
+                  e.target.checked === true
+                    ? (refs.current[
+                        idx
+                      ].current.style.backgroundColor =
+                        'gray')
+                    : (refs.current[
+                        idx
+                      ].current.style.backgroundColor =
+                        'white');
+
+                  //.target.style.backgroundColor = 'black';
                 }}
               />
               {console.log(todoListData)}
