@@ -10,7 +10,7 @@ import './styles.scss';
 
 const AnimationsName = {
   CLOSE: 'header-container-close',
-  OPENNING: 'animation-open',
+  OPENING: 'animation-open',
   OPEN: 'header-container-open',
   CLOSING: 'animation-close',
 };
@@ -31,7 +31,7 @@ const SnsHeader = ({
 }) => {
   const headerClassNames = {
     CLOSE: 'header-container-close',
-    OPENNING: 'animation-open',
+    OPENING: 'animation-open',
     OPEN: 'header-container-open',
     CLOSING: 'animation-close',
   };
@@ -59,6 +59,7 @@ const SnsHeader = ({
       inputDispatch({ name: 'details', value: '' });
 
       closeHeader();
+      event.target.value = null;
     }
   };
 
@@ -81,7 +82,7 @@ const SnsHeader = ({
 
     animations[0].onfinish = (ani) => {
       if (
-        ani.target.animationName === AnimationsName.OPENNING
+        ani.target.animationName === AnimationsName.OPENING
       ) {
         changeExtendsState(Animation_Status.OPEN);
       } else if (
@@ -98,10 +99,10 @@ const SnsHeader = ({
     if (
       !(
         isExtends === Animation_Status.OPEN ||
-        isExtends === Animation_Status.OPENNING
+        isExtends === Animation_Status.OPENING
       )
     ) {
-      changeExtendsState(Animation_Status.OPENNING);
+      changeExtendsState(Animation_Status.OPENING);
     }
   };
 
@@ -121,8 +122,8 @@ const SnsHeader = ({
       className={`${className} ${
         isExtends === Animation_Status.CLOSE
           ? headerClassNames.CLOSE
-          : isExtends === Animation_Status.OPENNING
-          ? headerClassNames.OPENNING
+          : isExtends === Animation_Status.OPENING
+          ? headerClassNames.OPENING
           : isExtends === Animation_Status.OPEN
           ? headerClassNames.OPEN
           : isExtends === Animation_Status.CLOSING
@@ -155,7 +156,7 @@ const SnsHeader = ({
               }
             }}
           />
-          {isExtends === Animation_Status.OPENNING ||
+          {isExtends === Animation_Status.OPENING ||
           isExtends === Animation_Status.OPEN ? (
             <textarea
               placeholder="Details..."

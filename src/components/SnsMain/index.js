@@ -9,9 +9,16 @@ import './styles.scss';
 
 const Animation_Status = {
   CLOSE: 0,
-  OPENNING: 1,
+  OPENING: 1,
   OPEN: 2,
   CLOSING: 3,
+};
+
+const Body_Class_Name = {
+  CLOSE: 'body-container-close',
+  OPENING: 'body-container-opening',
+  OPEN: 'body-container-open',
+  CLOSING: 'body-container-closing',
 };
 
 const SnsMain = () => {
@@ -69,7 +76,17 @@ const SnsMain = () => {
         Animation_Status={Animation_Status}
       ></SnsHeader>
       <div
-        className="body-container"
+        className={`body-container ${
+          isExtends === Animation_Status.CLOSE
+            ? Body_Class_Name.CLOSE
+            : isExtends === Animation_Status.OPENING
+            ? Body_Class_Name.OPENING
+            : isExtends === Animation_Status.OPEN
+            ? Body_Class_Name.OPEN
+            : isExtends === Animation_Status.CLOSING
+            ? Body_Class_Name.CLOSING
+            : ''
+        }`}
         onClick={() => {
           if (
             !(
