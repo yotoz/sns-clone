@@ -5,6 +5,8 @@ import React, {
   useReducer,
 } from 'react';
 
+import { BsBoxArrowInDown } from 'react-icons/bs';
+
 //styles
 import './styles.scss';
 
@@ -178,7 +180,29 @@ const SnsHeader = ({
             ''
           )}
         </div>
+        <BsBoxArrowInDown
+          style={{
+            //backgroundColor: 'white',
+            //borderRadius: '2px',
+            //border: 'white 1px solid',
+            width: '5%',
+            height: '35%',
+            color: 'white',
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            submitRef.current.click();
+          }}
+          onMouseEnter={(e) => {
+            console.log(e.target);
+            e.target.style.color = 'red';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.color = 'white';
+          }}
+        />
         <button
+          style={{ display: 'none' }}
           type="submit"
           className="header-submit-button"
           onClick={() => {
@@ -186,9 +210,7 @@ const SnsHeader = ({
             handleClick();
           }}
           ref={submitRef}
-        >
-          Submit
-        </button>
+        ></button>
         <input
           type="file"
           ref={hiddenFileInput}

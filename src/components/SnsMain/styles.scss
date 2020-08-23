@@ -15,9 +15,10 @@
 
     .sns-main {
       height: 100%;
-      width: 60%;
+      width: 40%;
+      min-width: 600px;
 
-      background-color: grey;
+      background-color: #96bb7c;
 
       overflow: scroll;
       -ms-overflow-style: none; // IE에서 스크롤바 감춤
