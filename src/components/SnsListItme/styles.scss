@@ -1,9 +1,8 @@
 .sns-list-item {
-  //width: 100%;
-  //height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  //border: 1px solid black;
+
   align-items: center;
 
   .sns-card {
@@ -14,32 +13,40 @@
     &:not(:first-child) {
       margin-top: 8px;
     }
+    height: 100%;
+    width: 100%;
 
     //margin-top: 12px;
     width: 50%;
-    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px;
     .sns-card-header {
       height: 30px;
-      border: 1px solid red;
       display: flex;
       align-items: center;
       margin: 5px;
     }
 
     .sns-card-body {
-      border: 1px solid blue;
       //min-height: 10%;
       min-height: 40px;
       height: fit-content;
-      margin: 5px;
+
+      height: 100%;
+      width: 100%;
 
       .sns-card-img-list {
         display: flex;
-        height: 100px;
+        height: 100%;
         width: 100%;
+
+        //width: 100%;
         .sns-card-img {
-          flex: 1;
-          height: 100%;
+          display: flex;
+          // height: 100%;
+          // width: 100%;
+
           object-fit: fill;
         }
       }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './styles.scss';
 import PropTypes from 'prop-types';
 import Modal from '../SnsModal';
@@ -6,11 +6,14 @@ const SnsListItem = ({
   isDone,
   title = '제에모목',
   detatils = '내용',
-  imgUri = '이미지당',
+  imgUri = ['/test1.png', '/test2.png', '/test3.png'],
 }) => {
+  const imgRef = useRef();
+
   const [modalState, setModalState] = useState(false);
-  const onClick = () => {
+  const onClick = (e) => {
     setModalState(true);
+    imgRef.current.src = e.target.src;
   };
 
   const onClose = () => {
@@ -23,34 +26,29 @@ const SnsListItem = ({
         <div className="sns-card-header">{title}</div>
         <div className="sns-card-body">
           <div className="sns-card-img-list">
-            <img
-              className="sns-card-img"
-              alt="post"
-              src="/test.png"
-              onClick={onClick}
-            />
-            <img
-              className="sns-card-img"
-              alt="post"
-              src="/test.png"
-            />
-            <img
-              className="sns-card-img"
-              alt="post"
-              src="/test.png"
-            />
+            {imgUri.map((imgSrc, idx) => (
+              <img
+                width={100 / imgUri.length + '%'}
+                className="sns-card-img"
+                alt="post"
+                key={idx}
+                src={imgSrc}
+                onClick={(e) => {
+                  onClick(e);
+                }}
+              />
+            ))}
           </div>
-          <div className="sns-card-text">
-            {detatils}aaaaaaaaaaa
-          </div>
+          <div className="sns-card-text">{detatils}</div>
         </div>
       </div>
 
       <Modal visible={modalState} onClose={onClose}>
         <img
+          ref={imgRef}
           className="sns-card-img"
           alt="post"
-          src="/test.png"
+          src=""
           onClick={(e) => e.stopPropagation()}
         />
       </Modal>
@@ -62,7 +60,7 @@ SnsListItem.propTypes = {
   isDone: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   detatils: PropTypes.string.isRequired,
-  imgUri: PropTypes.string.isRequired,
+  imgUri: PropTypes.any,
 };
 
 export default SnsListItem;
