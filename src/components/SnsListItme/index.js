@@ -33,7 +33,16 @@ const SnsListItem = ({
               <div className="sns-card-title">
                 {item.title}
               </div>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                name={item.uniqNum}
+                onClick={(e) => {
+                  changeIsDoneData(
+                    e.target.checked,
+                    e.target.name,
+                  );
+                }}
+              />
               {console.log(todoListData)}
             </div>
             <div className="sns-card-body">
