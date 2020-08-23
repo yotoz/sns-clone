@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 //components
 import SnsHeader from '../SnsHeader';
+import SnsListItem from '../SnsListItme';
 
 //styles
 import './styles.scss';
@@ -64,7 +65,9 @@ const SnsMain = () => {
           }
         }}
       >
-        <div className="sns-main">테스트 입니다</div>
+        <div className="sns-main">
+          <SnsListItem />
+        </div>
       </div>
     </div>
   );
